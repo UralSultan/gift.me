@@ -9,7 +9,7 @@ class WishSerializer(serializers.Serializer):
     image = serializers.ImageField()
     holiday = serializers.PrimaryKeyRelatedField(queryset=HolidayModel.objects.all())
     description = serializers.CharField(max_length=250)
-    link = serializers.URLField(max_length=255, blank=True)
+    link = serializers.URLField(max_length=255)
 
     def create(self, validated_data):
         wish = Wish.objects.create(**validated_data)
@@ -29,3 +29,18 @@ class GiftSrializer(serializers.ModelSerializer):
     class Meta:
         model = Gift
         fields = ['name', 'country', 'category', 'sub_category', 'condition', 'image']
+
+    def create(self, validated_data):
+        gift = Gift.objects.create(**validated_data)
+        return gift
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        instance.country = validated_data.get('country', instance.country)
+        instance.category = validated_data.get('category', instance.category)
+        instance.sub_category = validated_data.get('sub_category', instance.sub_category)
+        instance.condition = validated_data.get('condition', instance.condition)
+        instance.image = validated_data.get('image', instance.image)
+        instance.save()
+        return instance
+

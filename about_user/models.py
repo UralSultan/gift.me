@@ -16,3 +16,6 @@ class About(models.Model):
 	size_d = models.CharField(max_length=1)
 	hobbi = models.TextField()
 	important = models.TextField()
+
+	def __str__(self):
+		return self.first_name

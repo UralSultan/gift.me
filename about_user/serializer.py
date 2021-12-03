@@ -28,7 +28,7 @@ class AboutSerializers(serializers.ModelSerializer):
             raise serializers.ValidationError(detail="Формат ввода телефона: +996 555 555 555", code="Номер подходит")
 
         return attrs
-
+#
 # def validate_first_name(self, attrs):
 # 	attrs = super().validate(attrs)
 # 	first_name = attrs["first_name"]

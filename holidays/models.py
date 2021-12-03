@@ -7,7 +7,7 @@ class HolidayModel(models.Model):
     date_of_holiday = models.DateField()
 
     class Meta:
-        verbose_name_plural = 'Праздники'
+        verbose_name_plural = 'holidays'
 
     def __str__(self):
         return self.name

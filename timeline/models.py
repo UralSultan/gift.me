@@ -11,7 +11,7 @@ class Wish(models.Model):
     description = models.CharField(max_length=250)
 
     class Meta:
-        verbose_name_plural = 'Подарки'
+        verbose_name_plural = 'wish'
 
     def __str__(self):
         return self.name
@@ -38,9 +38,11 @@ class Gift(models.Model):
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE,
                                      related_name='gifts', null=True)
 
+    NEW = 'N'
+    USED = 'U'
     CONDITION_CHOICES = [
-        'New',
-        'Used'
+        (NEW, 'New'),
+        (USED, 'Used')
     ]
     condition = models.CharField(
         max_length=8,
